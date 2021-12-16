@@ -1,0 +1,77 @@
+<script>
+	let vw;
+</script>
+
+<svelte:window bind:innerWidth={vw} />
+<nav>
+	<a href="/" class="logo-link">
+		<img src="/fuseLogo.svg" alt="rx-fuse logo" width="24" />
+		{#if vw > 600}
+			<div class="logo-text">
+				<span class="svelte">SVELTE</span>
+				<span class="fuse">FUSE:</span>
+				<span class="rx">RX</span>
+			</div>
+		{/if}
+	</a>
+	<a class="nav-link" href="/docs">Docs</a>
+	<a class="nav-link" href="https://github.com/AlexWarnes">
+		<img src="/GitHub.svg" alt="GitHub logo" width="24" />
+	</a>
+</nav>
+
+<slot />
+
+<style>
+	nav {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 60px;
+		padding: 0 48px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		box-shadow: 0 -0.4rem 0.9rem 0.2rem #00000080;
+		background: #ffffff;
+	}
+
+	.nav-link {
+		padding: 0.5rem 0.75rem;
+		border-radius: 4px;
+		transition: 150ms all ease;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 100%;
+		transition: background-color 200ms ease;
+	}
+	.nav-link:hover {
+		background-color: #00000010;
+	}
+
+	a {
+		color: #444444;
+		text-decoration: none;
+		margin: 0 1rem;
+	}
+
+	.logo-link {
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+		flex-grow: 1;
+	}
+
+	.logo-link img {
+		margin: 0 1rem 0 0;
+	}
+
+	.logo-text .fuse {
+		color: #7d838d;
+	}
+	.logo-text .rx {
+		color: var(--rxjs-purple);
+	}
+</style>

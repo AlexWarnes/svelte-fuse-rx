@@ -1,0 +1,81 @@
+:root {
+	--svelte-orange: #ff3e02;
+	--rxjs-purple: #d82d60;
+	--fuse-gradient: linear-gradient(45deg, rgba(255, 62, 2, 1) 90%, rgba(216, 45, 96, 1) 100%);
+}
+
+* {
+	box-sizing: border-box;
+}
+html,
+body {
+	width: 100%;
+	min-height: 100%;
+	margin: 0;
+	padding: 0 0 0 0;
+	font-family: 'Overpass', sans-serif;
+	font-size: 18px;
+	color: #444444;
+	background-color: #fafbfc;
+}
+body {
+	padding: 60px 0 0 0;
+}
+
+p {
+	line-height: 1.75rem;
+}
+
+h1 {
+	margin: 3rem 0 1.5rem;
+}
+
+h2 {
+	margin: 2.5rem 0 1.1rem;
+}
+
+.footnote {
+	font-size: 0.75rem;
+	font-style: italic;
+}
+
+.italic {
+	font-style: italic;
+}
+
+.asterisk {
+	/* To avoid the line height effects of <sup> */
+	vertical-align: super;
+	font-size: 0.75rem;
+}
+main {
+	width: 100%;
+	max-width: 800px;
+	height: 100%;
+	margin: 0 auto;
+	padding: 2rem;
+}
+
+pre {
+	margin: 0 0;
+	width: 100%;
+	padding: 1rem;
+	color: #ffffff;
+	background: #333;
+	border-radius: 0.5rem;
+	font-size: 14px;
+	font-family: 'Fira Mono', monospace;
+}
+
+code {
+	position: relative;
+	border-radius: 0.3em;
+	white-space: nowrap;
+	color: #444;
+	-webkit-font-smoothing: initial;
+	padding: 0.4rem;
+	margin: 0 0.2rem;
+	top: -0.1rem;
+	font-size: 0.75rem;
+	background: #e5eef5;
+}
