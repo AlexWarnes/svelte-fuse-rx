@@ -1,0 +1,16 @@
+<svg viewBox="50 -100 300 300" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">
+  <defs>
+    <radialGradient gradientUnits="userSpaceOnUse" cx="183.337" cy="33.93" r="148.159" id="gradient-0" gradientTransform="matrix(1, 0, 0, 1, 16.145985, 15.482914)">
+      <stop offset="0" style="stop-color: rgba(232, 244, 255, 0.52)"></stop>
+      <stop offset="1" style="stop-color: rgba(206, 216, 224, 0.62)"></stop>
+    </radialGradient>
+    <linearGradient id="a" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0" stop-color="#ff3e02"></stop>
+      <stop offset="0.5" stop-color="#ff3e0210"></stop>
+      <stop offset="0.5" stop-color="#d82d6010"></stop>
+      <stop offset="1" stop-color="#d82d60"></stop>
+    </linearGradient>
+  </defs>
+  <ellipse style="fill: url(#gradient-0);" cx="199.483" cy="49.413" rx="148.159" ry="148.159"></ellipse>
+  <path fill="none" stroke="url(#a)" d="M 95.504 -32.066 C 126.171 -64.835 169.001 -38.042 223.994 48.314 C 278.988 134.669 307.158 156.209 308.504 112.934 M 77.504 -20.066 C 129.504 -11.474 171.956 12.61 204.86 52.186 C 237.764 91.761 274.979 114.01 316.504 118.934 M 84.504 -21.066 C 125.838 -19.539 168.834 4.363 213.494 50.639 C 258.154 96.915 293.491 117.346 319.504 111.934 M 102.504 -29.066 C 140.504 -25.324 181.915 3.704 226.736 58.016 C 271.558 112.328 300.48 136.634 313.504 130.934 M 103.504 -29.066 C 139.504 -65.674 171.71 -39.67 200.12 48.946 C 228.531 137.562 266.326 162.224 313.504 122.934 M 84.504 -34.066 C 134.504 21.602 171.203 55.868 194.6 68.734 C 217.998 81.599 256.632 99.999 310.504 123.934 M 91.504 -33.066 C 123.504 -41.841 161.504 -12.493 205.502 54.979 C 249.501 122.45 288.168 142.102 321.504 113.934" stroke-width="2px"></path>
+</svg>

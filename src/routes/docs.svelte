@@ -11,7 +11,6 @@
 	} from '$lib/rxActions';
 	import { debounceTime, filter, map, tap } from 'rxjs';
 	import DocTitleRow from '../components/DocTitleRow.svelte';
-	import LinkBtn from '../components/LinkBtn.svelte';
 	let debouncedText = '';
 	let nonDebouncedText = '';
 	let reqStatus = 'IDLE';
@@ -132,7 +131,13 @@
 	</p>
 	<code>rxGETStatus: event.detail</code>
 	<ul>
-		<li><code>status: 'EMPTY' | 'DEBOUNCING' | 'PENDING' | 'SUCCESS' | 'ERROR';</code></li>
+		<li>
+			status: 
+			<code class="code-block">'EMPTY'</code>
+			<code class="code-block">'DEBOUNCING'</code>
+			<code class="code-block">'PENDING'</code>
+			<code class="code-block">'SUCCESS'</code>
+			<code class="code-block">'ERROR'</code></li>
 		<li><code>value: any;</code> will contain response value when status === 'SUCCESS'</li>
 	</ul>
 	<div class="dbInput box">
@@ -320,5 +325,10 @@
 		position: absolute;
 		right: 12px;
 		top: 12px;
+	}
+
+	code.code-block {
+		display: block;
+    width: fit-content;
 	}
 </style>

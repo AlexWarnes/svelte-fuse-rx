@@ -1,0 +1,10 @@
+<svg viewBox="50 -100 275 275" xmlns="http://www.w3.org/2000/svg">
+  <defs></defs>
+  <linearGradient id="a" x1="0%" y1="0%" x2="0%" y2="100%">
+    <stop offset="0" stop-color="#ff3e02"></stop>
+    <stop offset="0.5" stop-color="#ff3e0210"></stop>
+    <stop offset="0.5" stop-color="#d82d6010"></stop>
+    <stop offset="1" stop-color="#d82d60"></stop>
+  </linearGradient>
+  <path fill="none" stroke="url(#a)" d="M-13-23q46-49.153 128.49 80.38T200 122M-31-11Q47 1.889 96.356 61.252T208 128M-24-12q62 2.291 128.99 71.705T211 121M-6-20q57 5.614 124.232 87.082T205 140M-8-15q50-58.172 108.951 73.244T207 124M-5-20q54-54.912 96.616 78.012T205 132M-31-22q74-46.268 137.05 78.898T213 137M-24-25Q51 58.502 86.096 77.8T202 133M-17-24Q31-37.162 96.998 64.045T213 123M-25-19q75 42.445 131.883 92.126T213 126" transform="matrix(1, 0, 0, 1, 95.708376, -30.555168)"></path>
+</svg>

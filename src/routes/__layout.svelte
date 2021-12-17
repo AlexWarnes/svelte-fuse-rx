@@ -5,7 +5,7 @@
 <svelte:window bind:innerWidth={vw} />
 <nav>
 	<a href="/" class="logo-link">
-		<img src="/fuseLogo.svg" alt="rx-fuse logo" width="24" />
+		<img src="/sineWave.svg" alt="rx-fuse logo" width="60" />
 		{#if vw > 600}
 			<div class="logo-text">
 				<span class="svelte">SVELTE</span>
@@ -35,6 +35,7 @@
 		align-items: center;
 		box-shadow: 0 -0.4rem 0.9rem 0.2rem #00000080;
 		background: #ffffff;
+		z-index: 100;
 	}
 
 	.nav-link {
