@@ -7,10 +7,13 @@
 
 <div class="doc-title-row">
 	<h2>{title}</h2>
-	<LinkBtn href={replURL}>
-		<span>REPL</span>
-		<img class="chevron" src="/ChevronRight.svg" alt="arrow-right" width="18" />
-	</LinkBtn>
+
+	{#if replURL}
+		<LinkBtn href={replURL}>
+			<span>REPL</span>
+			<img class="chevron" src="/ChevronRight.svg" alt="arrow-right" width="18" />
+		</LinkBtn>
+	{/if}
 </div>
 
 <style>

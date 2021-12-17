@@ -2,6 +2,9 @@
 	import SineWave from '../components/SineWave.svelte';
 	import HeaderLogoBox from '../components/HeaderLogoBox.svelte';
 </script>
+<svelte:head>
+	<title>svelte-fuse-rx</title>
+</svelte:head>
 
 <header>
 	<h1><span>SVELTE</span><span class="fuse">FUSE:</span><span class="rx">RX</span></h1>

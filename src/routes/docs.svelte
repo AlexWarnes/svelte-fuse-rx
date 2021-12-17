@@ -64,7 +64,7 @@
 <main>
 	<h1>PIPEABLE STORE</h1>
 
-	<DocTitleRow title="rxWritable" replURL="" />
+	<DocTitleRow title="rxWritable" replURL="https://svelte.dev/repl/4d252d989eef4df08ff27a0347e558ef" />
 	<p class="description">
 		Use an rxWritable just like a Svelte writable, but with the option to <code>pipe</code> RxJS operators
 		and compose streams. It has all the benefits of simple Svelte store syntax + robust RxJS utility.
@@ -94,7 +94,7 @@
 	</div>
 
 	<h1>ACTIONS</h1>
-	<DocTitleRow title="use:rxDebounce" replURL="" />
+	<DocTitleRow title="use:rxDebounce" replURL="https://svelte.dev/repl/84fcad9f6883466593f088e67bc350c4" />
 	<p class="description">
 		Emits the most recent event via <code>rxEmit(event => event.detail)</code> after events have stopped
 		for x number of milliseconds, as specified by the duration option (default is 250ms). Useful when
@@ -122,7 +122,7 @@
 		</pre>
 	</div>
 
-	<DocTitleRow title="use:rxGETFromInput" replURL="" />
+	<DocTitleRow title="use:rxGETFromInput" replURL="https://svelte.dev/repl/af04d78f5e0b4bddb6a9ba35e4844f69" />
 	<p class="description">
 		Makes a GET request using the input value whenever it changes. The rxGETStatus event will emit
 		with event detail whenever the status changes. Pending requests are automatically cancelled when
