@@ -15,7 +15,7 @@
 		{/if}
 	</a>
 	<a class="nav-link" href="/docs">Docs</a>
-	<a class="nav-link" href="https://github.com/AlexWarnes">
+	<a class="nav-link" href="https://github.com/AlexWarnes/svelte-fuse-rx">
 		<img src="/GitHub.svg" alt="GitHub logo" width="24" />
 	</a>
 </nav>
