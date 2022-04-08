@@ -23,7 +23,7 @@
 	<h2>Why would I use it?</h2>
 	<ol>
 		<li>
-			An <code>rxWritable</code> store that can use all of Svelte sytax like auto-subscribe,
+			An <code>rxWritable</code> store that can use all of Svelte's syntax like auto-subscribe,
 			value-binding, and direct assignement <span class="italic">AND</span> implement the RxJS pipe
 			to use any RxJS operators. Regular Svelte stores cannot do the latter, and regular RxJS
 			"stores" (e.g. BehaviorSubject) cannot do the former.<span class="asterisk">*</span>
