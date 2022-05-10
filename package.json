@@ -1,6 +1,6 @@
 {
 	"name": "svelte-fuse-rx",
-	"version": "0.0.102",
+	"version": "0.0.105",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/AlexWarnes/svelte-fuse-rx.git"
@@ -27,7 +27,6 @@
 		"package": "^1.0.1",
 		"prettier": "^2.4.1",
 		"prettier-plugin-svelte": "^2.4.0",
-		"rxjs": "^7.4.0",
 		"svelte": "^3.44.0",
 		"svelte-check": "^2.2.6",
 		"svelte-kit": "^1.0.0",
@@ -37,5 +36,7 @@
 		"typescript": "^4.4.3"
 	},
 	"type": "module",
-	"dependencies": {}
+	"dependencies": {
+		"rxjs": "^7.4.0"
+	}
 }
