@@ -23,12 +23,4 @@ export class rxWritable extends BehaviorSubject<any> {
     const nextValue = callback(super.value);
     super.next(nextValue)
   }
-
-  lift(operator) {
-    // @ts-ignore
-    const result = new rxWritable() // TODO: Needs value?
-    result.operator = operator // TODO: How to handle deprecation warnings?
-    result.source = this // TODO: How to handle deprecation warnings?
-    return result
-  }
 }

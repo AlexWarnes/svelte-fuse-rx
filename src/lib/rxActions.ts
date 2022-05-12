@@ -19,8 +19,8 @@ import { ajax } from 'rxjs/ajax';
 export type RxEvent = 'input' | 'change' | 'mousemove' | string;
 
 export function rxDebounce(node, options?: { on?: RxEvent; duration?: number }) {
-	let event: RxEvent = options?.['on'] || 'input';
-	let duration = options?.['duration'] || 250;
+	let event: RxEvent = options?.on || 'input';
+	let duration = options?.duration || 250;
 
 	let valueSubscription: Subscription; // holds our subscription
 	let value$ = new BehaviorSubject(node.value || '');
@@ -42,8 +42,8 @@ export function rxDebounce(node, options?: { on?: RxEvent; duration?: number }) 
 			node.removeEventListener(event, handleEvent, true);
 
 			// Re-establish scoped variables that may have changed
-			event = newOptions?.['on'] || 'input';
-			duration = newOptions?.['duration'] || 250;
+			event = newOptions?.on || 'input';
+			duration = newOptions?.duration || 250;
 			value$ = new BehaviorSubject(node.value || '');
 
 			// Re-init subscription to use new duration
@@ -59,8 +59,8 @@ export function rxDebounce(node, options?: { on?: RxEvent; duration?: number }) 
 	};
 }
 export function rxThrottle(node, options?: { on?: RxEvent; duration?: number }) {
-	let event: RxEvent = options?.['on'] || 'mousemove';
-	let duration = options?.['duration'] || 250;
+	let event: RxEvent = options?.on || 'mousemove';
+	let duration = options?.duration || 250;
 
 	let valueSubscription: Subscription; // holds our subscription
 	let value$ = new BehaviorSubject(node.value || '');
@@ -82,8 +82,8 @@ export function rxThrottle(node, options?: { on?: RxEvent; duration?: number }) 
 			node.removeEventListener(event, handleEvent, true);
 
 			// Re-establish scoped variables that may have changed
-			event = newOptions?.['on'] || 'mousemove';
-			duration = newOptions?.['duration'] || 250;
+			event = newOptions?.on || 'mousemove';
+			duration = newOptions?.duration || 250;
 			value$ = new BehaviorSubject(node.value || '');
 
 			// Re-init subscription to use new duration
@@ -100,8 +100,8 @@ export function rxThrottle(node, options?: { on?: RxEvent; duration?: number }) 
 }
 
 export function rxBufferTime(node, options?: { on?: RxEvent; duration?: number }) {
-	let event: RxEvent = options?.['on'] || 'mousemove';
-	let duration = options?.['duration'] || 500;
+	let event: RxEvent = options?.on || 'mousemove';
+	let duration = options?.duration || 500;
 
 	let valueSubscription: Subscription; // holds our subscription
 	let value$ = new BehaviorSubject(null);
@@ -129,8 +129,8 @@ export function rxBufferTime(node, options?: { on?: RxEvent; duration?: number }
 			node.removeEventListener(event, handleEvent, true);
 
 			// Re-establish scoped variables that may have changed
-			event = newOptions?.['on'] || 'mousemove';
-			duration = newOptions?.['duration'] || 500;
+			event = newOptions?.on || 'mousemove';
+			duration = newOptions?.duration || 500;
 			value$ = new BehaviorSubject(null);
 
 			// Re-init subscription to use new duration
@@ -147,8 +147,8 @@ export function rxBufferTime(node, options?: { on?: RxEvent; duration?: number }
 }
 
 export function rxBufferCount(node, options?: { on?: RxEvent; count?: number }) {
-	let event: RxEvent = options?.['on'] || 'mousemove';
-	let count = options?.['count'] || 25;
+	let event: RxEvent = options?.on || 'mousemove';
+	let count = options?.count || 25;
 
 	let valueSubscription: Subscription; // holds our subscription
 	let value$ = new BehaviorSubject(null);
@@ -176,8 +176,8 @@ export function rxBufferCount(node, options?: { on?: RxEvent; count?: number }) 
 			node.removeEventListener(event, handleEvent, true);
 
 			// Re-establish scoped variables that may have changed
-			event = newOptions?.['on'] || 'mousemove';
-			count = newOptions?.['count'] || 25;
+			event = newOptions?.on || 'mousemove';
+			count = newOptions?.count || 25;
 			value$ = new BehaviorSubject(null);
 
 			// Re-init subscription to use new count
@@ -214,6 +214,7 @@ export interface rxGETFromInputOptions {
 export interface rxGETStatusDetails {
 	status: 'EMPTY' | 'DEBOUNCING' | 'PENDING' | 'SUCCESS' | 'ERROR';
 	value: any;
+	response: any;
 }
 export function rxGETFromInput(node, options: rxGETFromInputOptions): any {
 	let requestOptions: Partial<rxGETFromInputOptions> = {
@@ -241,7 +242,8 @@ export function rxGETFromInput(node, options: rxGETFromInputOptions): any {
 						new CustomEvent('rxGETStatus', {
 							detail: {
 								status: !!value && !!value.trim() ? 'DEBOUNCING' : 'EMPTY',
-								value
+								value,
+								response: null,
 							} as rxGETStatusDetails
 						})
 					);
@@ -251,7 +253,7 @@ export function rxGETFromInput(node, options: rxGETFromInputOptions): any {
 				tap((value: string) =>
 					node.dispatchEvent(
 						new CustomEvent('rxGETStatus', {
-							detail: { status: 'PENDING', value } as rxGETStatusDetails
+							detail: { status: 'PENDING', value, response: null } as rxGETStatusDetails
 						})
 					)
 				),
@@ -282,13 +284,13 @@ export function rxGETFromInput(node, options: rxGETFromInputOptions): any {
 					if (response?.message?.includes('error')) {
 						node.dispatchEvent(
 							new CustomEvent('rxGETStatus', {
-								detail: { status: 'ERROR', value: response } as rxGETStatusDetails
+								detail: { status: 'ERROR', value: node.value, response } as rxGETStatusDetails
 							})
 						);
 					} else {
 						node.dispatchEvent(
 							new CustomEvent('rxGETStatus', {
-								detail: { status: 'SUCCESS', value: response } as rxGETStatusDetails
+								detail: { status: 'SUCCESS', value: node.value, response } as rxGETStatusDetails
 							})
 						);
 					}
