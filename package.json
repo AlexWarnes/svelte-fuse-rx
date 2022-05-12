@@ -1,6 +1,6 @@
 {
 	"name": "svelte-fuse-rx",
-	"version": "0.0.105",
+	"version": "0.0.106",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/AlexWarnes/svelte-fuse-rx.git"
