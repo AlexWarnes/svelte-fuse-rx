@@ -15,7 +15,7 @@
 	let nonDebouncedText = '';
 	let reqStatus = 'IDLE';
 	let repos = [];
-
+	let resultsPP = 5;
 	const mousemove = new rxWritable(null);
 	const mouseXYDiff = mousemove.pipe(
 		filter((evt) => !!evt),
@@ -49,9 +49,11 @@
 
 	const baseURL = 'https://api.github.com/search/repositories';
 	const handleRequest = (eventDetail: rxGETStatusDetails) => {
-		reqStatus = eventDetail.status;
-		if (reqStatus === 'SUCCESS') {
-			repos = eventDetail.value.items;
+		const { status, response } = eventDetail;
+		reqStatus = status;
+
+		if (status === 'SUCCESS') {
+			repos = response.items;
 		} else {
 			repos = [];
 		}
@@ -64,7 +66,10 @@
 <main>
 	<h1>PIPEABLE STORE</h1>
 
-	<DocTitleRow title="rxWritable" replURL="https://svelte.dev/repl/4d252d989eef4df08ff27a0347e558ef" />
+	<DocTitleRow
+		title="rxWritable"
+		replURL="https://svelte.dev/repl/4d252d989eef4df08ff27a0347e558ef"
+	/>
 	<p class="description">
 		Use an rxWritable just like a Svelte writable, but with the option to <code>pipe</code> RxJS operators
 		and compose streams. It has all the benefits of simple Svelte store syntax + robust RxJS utility.
@@ -87,14 +92,17 @@
 
   <div on:mousemove={event => $mousemove = event}>
     (mousemove over)
-    <span>position: {JSON.stringify($mousePosition)}</span>
+    <span>mouseXYDiff: {JSON.stringify($mouseXYDiff)}</span>
   </div>
 `}			
 	</pre>
 	</div>
 
 	<h1>ACTIONS</h1>
-	<DocTitleRow title="use:rxDebounce" replURL="https://svelte.dev/repl/84fcad9f6883466593f088e67bc350c4" />
+	<DocTitleRow
+		title="use:rxDebounce"
+		replURL="https://svelte.dev/repl/84fcad9f6883466593f088e67bc350c4"
+	/>
 	<p class="description">
 		Emits the most recent event via <code>rxEmit(event => event.detail)</code> after events have stopped
 		for x number of milliseconds, as specified by the duration option (default is 250ms). Useful when
@@ -122,37 +130,53 @@
 		</pre>
 	</div>
 
-	<DocTitleRow title="use:rxGETFromInput" replURL="https://svelte.dev/repl/af04d78f5e0b4bddb6a9ba35e4844f69" />
+	<DocTitleRow
+		title="use:rxGETFromInput"
+		replURL="https://svelte.dev/repl/af04d78f5e0b4bddb6a9ba35e4844f69"
+	/>
 	<p class="description">
 		Makes a GET request using the input value whenever it changes. The rxGETStatus event will emit
 		with event detail whenever the status changes. Pending requests are automatically cancelled when
 		a new request is made. Use options to adjust the debounce time, query parameters, or a
 		formatting function if you want to customize how the input value is used.
 	</p>
-	<code>rxGETStatus: event.detail</code>
+	<h3>Events:</h3>
+	<code>on:rxGETStatus</code>
+	<h4>Event Detail Schema:</h4>
 	<ul>
 		<li>
-			status: 
+			<code>status: </code>
 			<code class="code-block">'EMPTY'</code>
 			<code class="code-block">'DEBOUNCING'</code>
 			<code class="code-block">'PENDING'</code>
 			<code class="code-block">'SUCCESS'</code>
-			<code class="code-block">'ERROR'</code></li>
-		<li><code>value: any;</code> will contain response value when status === 'SUCCESS'</li>
+			<code class="code-block">'ERROR'</code>
+		</li>
+		<li><code>value: string;</code> the current input value</li>
+		<li>
+			<code>response: any</code> contains the response object when status is SUCCESS or ERROR,
+			otherwise <code>null</code>
+		</li>
 	</ul>
 	<div class="dbInput box">
+		<label for="rxGETFromInput">Query</label>
 		<input
+			id="rxGETFromInput"
 			type="text"
+			placeholder="svelte shader"
 			use:rxGETFromInput={{
 				baseURL,
 				queryParamKey: 'q',
-				queryParams: 'per_page=5'
+				queryParams: `per_page=${resultsPP}`
 			}}
 			on:rxGETStatus={(e) => handleRequest(e.detail)}
 		/>
+		<label for="per_page">Results Per Page</label>
+		<input id="per_page" type="range" bind:value={resultsPP} min="1" max="10" step="1" />
+		<span>{resultsPP}</span>
 		<p class="label">Request Status:</p>
-		<span class={`output-text ${reqStatus}`}>{reqStatus}</span>
-		<p class="label">Results:</p>
+		<span class="output-text {reqStatus}">{reqStatus}</span>
+		<p class="label">Results: ({repos.length})</p>
 		<div class="result-box">
 			{#each repos as repo (repo.id)}
 				<a class="card-wrapper" href={repo.html_url}>
@@ -167,11 +191,30 @@
 		</div>
 
 		<pre>
-{`<input
+{`
+import { rxGETFromInput, rxGETStatusDetails } from 'svelte-fuse-rx';
+
+let reqStatus = 'IDLE';
+let repos = [];
+
+const handleRequest = (eventDetail: rxGETStatusDetails) => {
+  const { status, response } = eventDetail;
+  reqStatus = status;
+
+  if (status === 'SUCCESS') {
+    repos = response.items;
+  } else {
+    repos = [];
+  }
+};
+
+// ...
+
+<input
   use:rxGETFromInput={{
     baseURL,
     queryParamKey: 'q',
-    queryParams: 'per_page=5'
+    queryParams: 'per_page=${resultsPP}'
   }}
   on:rxGETStatus={(e) => handleRequest(e.detail)}
 />`}
@@ -247,7 +290,6 @@
 </main>
 
 <style>
-
 	h1 {
 		border-bottom: 1px solid var(--rxjs-purple);
 	}
@@ -291,7 +333,7 @@
 	.result-box {
 		width: 100%;
 		overflow: auto;
-		height: 5rem;
+		height: 7rem;
 	}
 
 	li {
@@ -329,6 +371,6 @@
 
 	code.code-block {
 		display: block;
-    width: fit-content;
+		width: fit-content;
 	}
 </style>

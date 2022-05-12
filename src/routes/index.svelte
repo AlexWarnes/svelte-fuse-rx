@@ -1,7 +1,9 @@
 <script>
 	import SineWave from '../components/SineWave.svelte';
 	import HeaderLogoBox from '../components/HeaderLogoBox.svelte';
+	import LinkBtn from '../components/LinkBtn.svelte';
 </script>
+
 <svelte:head>
 	<title>svelte-fuse-rx</title>
 </svelte:head>
@@ -10,6 +12,13 @@
 	<h1><span>SVELTE</span><span class="fuse">FUSE:</span><span class="rx">RX</span></h1>
 	<p class="subtitle">simple actions | pipeable stores</p>
 	<p class="phrase">Go ahead, cross the streams.</p>
+	<span class="docs-btn-wrapper">
+		<LinkBtn href="/docs" background="#444444"
+			><span>Read the Docs</span>
+			<img class="chevron" src="/ChevronRight.svg" alt="arrow-right" width="18" />
+		</LinkBtn>
+	</span>
+
 	<HeaderLogoBox />
 	<SineWave />
 </header>
@@ -18,7 +27,10 @@
 	<p>
 		<code>svelte-fuse-rx</code> is a package for enhancing Svelte stores and event handling with RxJS.
 	</p>
-	<p>Try it in your own Svelte project with <code>npm i svelte-fuse-rx --save-dev</code> or take a closer look on the docs page.</p>
+	<p>
+		Try it in your own Svelte project with <code>npm i svelte-fuse-rx --save-dev</code> or take a closer
+		look on the docs page.
+	</p>
 
 	<h2>Why would I use it?</h2>
 	<ol>
@@ -68,7 +80,7 @@
 				rgba(206, 216, 224, 0.62) 92.49%
 			),
 			linear-gradient(0deg, #dbe7ef, #dbe7ef);
-			overflow: hidden;
+		overflow: hidden;
 	}
 
 	h1 {
@@ -94,6 +106,11 @@
 
 	ol li {
 		margin: 1rem 0;
+	}
+
+	.docs-btn-wrapper {
+		margin: 0 0 2rem;
+		z-index: 1;
 	}
 
 	/* .watermark {

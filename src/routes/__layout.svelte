@@ -4,7 +4,7 @@
 
 <svelte:window bind:innerWidth={vw} />
 <nav>
-	<a href="/" class="logo-link">
+	<a href="/" class="logo-link" aria-label="Home" title="Home">
 		<img src="/sineWave.svg" alt="rx-fuse logo" width="60" />
 		{#if vw > 600}
 			<div class="logo-text">
@@ -14,8 +14,14 @@
 			</div>
 		{/if}
 	</a>
-	<a class="nav-link" href="/docs">Docs</a>
-	<a class="nav-link" href="https://github.com/AlexWarnes/svelte-fuse-rx">
+	<span class="flex-spacer" />
+	<a aria-label="Docs" class="nav-link" href="/docs">Docs</a>
+	<a
+		title="GitHub"
+		aria-label="GitHub"
+		class="nav-link"
+		href="https://github.com/AlexWarnes/svelte-fuse-rx"
+	>
 		<img src="/GitHub.svg" alt="GitHub logo" width="24" />
 	</a>
 </nav>
@@ -62,7 +68,6 @@
 		display: flex;
 		justify-content: flex-start;
 		align-items: center;
-		flex-grow: 1;
 	}
 
 	.logo-link img {
@@ -74,5 +79,9 @@
 	}
 	.logo-text .rx {
 		color: var(--rxjs-purple);
+	}
+
+	.flex-spacer {
+		flex-grow: 1;
 	}
 </style>
