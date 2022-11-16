@@ -3,7 +3,7 @@
 declare namespace svelte.JSX {
 	interface HTMLAttributes<T> {
 		rxEmit?: (event: any) => void;
-		onrxEmit?: (event: Event) => void;
+		onrxEmit?: (event: CustomEvent<any>) => void;
 		rxGETPending?: (event: any) => void;
 		rxGETSuccess?: (event: any) => void;
 		rxGETError?: (event: any) => void;

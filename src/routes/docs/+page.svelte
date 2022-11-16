@@ -6,7 +6,7 @@
 		rxBufferTime,
 		rxDebounce,
 		rxGETFromInput,
-		rxGETStatusDetails,
+		type rxGETStatusDetails,
 		rxThrottle
 	} from '$lib/rxActions';
 	import { debounceTime, filter, map, tap } from 'rxjs';
@@ -14,7 +14,7 @@
 	let debouncedText = '';
 	let nonDebouncedText = '';
 	let reqStatus = 'IDLE';
-	let repos = [];
+	let repos: any[] = [];
 	let resultsPP = 5;
 	const mousemove = new rxWritable(null);
 	const mouseXYDiff = mousemove.pipe(
@@ -26,24 +26,24 @@
 		tap((position) => console.log('rxWritable:', position)),
 		map((position) => position.x - position.y)
 	);
-	const handleInputChange = (event) => {
+	const handleInputChange = (event: CustomEvent<any>) => {
 		// Do something cool
-		console.log('Debounced Input Value:', event.target.value);
-		debouncedText = event.target.value;
+		console.log('Debounced Input Value:', (event.target as HTMLInputElement).value);
+		debouncedText = (event.target as HTMLInputElement).value;
 	};
-	const handleNonDebouncedInputChange = (event) => {
-		nonDebouncedText = event.target.value;
+	const handleNonDebouncedInputChange = (event: any) => {
+		nonDebouncedText = (event.target as HTMLInputElement).value;
 	};
-	const handleMousemoveCoords = (event) => {
+	const handleMousemoveCoords = (event: CustomEvent<any>) => {
 		// Do something cool
 		console.log('Throttled Mouse Coords:', [event.detail.clientX, event.detail.clientY]);
 	};
-	const handleMousemoveBuffer = (event) => {
+	const handleMousemoveBuffer = (event: CustomEvent<any>) => {
 		// Do something cool
 		// event.detail is an array of events that occurred during your buffer time
 		console.log(
 			'Buffered Mouse Coords:',
-			event.detail.map((deet) => [deet.clientX, deet.clientY])
+			event.detail.map((deet: PointerEvent) => [deet.clientX, deet.clientY])
 		);
 	};
 
