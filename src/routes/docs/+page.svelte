@@ -16,15 +16,15 @@
 	let reqStatus = 'IDLE';
 	let repos: any[] = [];
 	let resultsPP = 5;
-	const mousemove = new rxWritable(null);
+	const mousemove = rxWritable(null);
 	const mouseXYDiff = mousemove.pipe(
 		filter((evt) => !!evt),
 		debounceTime(200),
-		map((evt) => {
+		map((evt: PointerEvent) => {
 			return { x: evt.clientX, y: evt.clientY };
 		}),
-		tap((position) => console.log('rxWritable:', position)),
-		map((position) => position.x - position.y)
+		tap((position: any) => console.log('rxWritable:', position)),
+		map((position: any) => position.x - position.y)
 	);
 	const handleInputChange = (event: CustomEvent<any>) => {
 		// Do something cool
@@ -79,7 +79,7 @@
 		<span>mouseXYDiff: {JSON.stringify($mouseXYDiff)}</span>
 		<pre>
 {`
-  const mousemove = new rxWritable(null);
+  const mousemove = rxWritable(null);
   const mouseXYDiff = mousemove.pipe(
     filter(evt => !!evt),
     debounceTime(200),

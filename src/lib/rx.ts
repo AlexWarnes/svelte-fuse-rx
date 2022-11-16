@@ -2,12 +2,12 @@ import { BehaviorSubject } from "rxjs";
 // Mostly copied from Ben Lesh's implementation here: https://github.com/ReactiveX/rxjs/issues/4740#issuecomment-490601347
 // THANK YOU BEN
 
-export class rxWritable extends BehaviorSubject<any> {
+class RXWritable extends BehaviorSubject<any> {
   // Enables Svelte bindings and direct assignments, for example:
   // - bind:value={$rxWritable}
   // - $rxWritable = newValue
   // - rxWritable.set(newValue)
-  set(value) {
+  set(value: any) {
     super.next(value)
   }
   
@@ -19,8 +19,12 @@ export class rxWritable extends BehaviorSubject<any> {
   //      name: "newName"
   //    }
   // })
-  update(callback) {
+  update(callback: any) {
     const nextValue = callback(super.value);
     super.next(nextValue)
   }
+}
+
+export function rxWritable(initialValue: any): any {
+  return new RXWritable(initialValue)
 }
