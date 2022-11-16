@@ -10,7 +10,7 @@
 		rxThrottle
 	} from '$lib/rxActions';
 	import { debounceTime, filter, map, tap } from 'rxjs';
-	import DocTitleRow from '../components/DocTitleRow.svelte';
+	import DocTitleRow from '$lib/components/DocTitleRow.svelte';
 	let debouncedText = '';
 	let nonDebouncedText = '';
 	let reqStatus = 'IDLE';

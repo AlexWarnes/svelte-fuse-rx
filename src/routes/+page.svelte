@@ -1,7 +1,7 @@
 <script>
-	import SineWave from '../components/SineWave.svelte';
-	import HeaderLogoBox from '../components/HeaderLogoBox.svelte';
-	import LinkBtn from '../components/LinkBtn.svelte';
+	import SineWave from '$lib/components/SineWave.svelte';
+	import HeaderLogoBox from '$lib/components/HeaderLogoBox.svelte';
+	import LinkBtn from '$lib/components/LinkBtn.svelte';
 </script>
 
 <svelte:head>
